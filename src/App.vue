@@ -1,22 +1,16 @@
 <template>
-  <v-app>
-    <v-main>
-      <CardsView/>
-    </v-main>
-  </v-app>
-  <!--  <img alt="Vue logo" src="./assets/logo.png">-->
-  <!--    <cards/>-->
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-import CardsView from "@/components/Cards/CardView.vue";
-
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    CardsView,
-  },
+    HelloWorld
+  }
 }
 </script>
 
