@@ -3,11 +3,6 @@
       class="mx-auto"
       max-width="344"
   >
-    <v-img
-        :src="product.image"
-        height="200px"
-        cover
-    ></v-img>
 
     <v-card-title>
       {{ product.title }}
@@ -19,19 +14,18 @@
 
     <v-card-actions>
       <v-btn
-          v-if="product.category === 'jewelery'"
           color="orange-lighten-2"
           variant="text"
       >
         Explore
       </v-btn>
-      <div v-else>категорія</div>
+
 
       <v-spacer></v-spacer>
 
       <v-btn
-          :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-          @click="show = !show"
+          :icon="show ='mdi-chevron-up' "
+          @click="show "
       >More</v-btn>
     </v-card-actions>
 
@@ -48,8 +42,9 @@
 </template>
 
 <script>
+
 export default {
-  name: "Product",
+  name: "ProductCard",
   props: {
     product: Object,
   },

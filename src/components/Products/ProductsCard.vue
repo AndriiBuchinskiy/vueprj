@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import Product from "@/components/Products/Product.vue";
+import Product from "@/components/Products/ProductCard.vue";
 import axios from "../../../services/axios";
 export default {
-  name: "Products",
+  name: "ProductsCard",
   components: {
     Product,
   },
@@ -53,7 +53,7 @@ export default {
     getProducts(params = {}) {
       axios.get('/products', {
         params: {
-          limit: 10,
+          limit: 50,
           ...params
         }
       })

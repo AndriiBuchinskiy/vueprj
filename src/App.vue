@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Products from "@/components/Products/Products.vue";
+import Products from "@/components/Products/ProductsCard.vue";
 export default {
   name: 'App',
   components: {
