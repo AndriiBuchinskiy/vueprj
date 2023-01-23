@@ -2,6 +2,7 @@
   <v-app>
     <v-main>
       <products/>
+
     </v-main>
   </v-app>
   <!--  <img alt="Vue logo" src="./assets/logo.png">-->
@@ -9,11 +10,13 @@
 </template>
 
 <script>
-import Products from "@/components/Products/ProductsCard.vue";
+import Products from "@/components/Products/ProductsList.vue";
+
 export default {
   name: 'App',
   components: {
     Products,
+
   }
 }
 </script>

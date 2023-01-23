@@ -3,7 +3,6 @@
       class="mx-auto"
       max-width="344"
   >
-
     <v-card-title>
       {{ product.title }}
     </v-card-title>
@@ -13,11 +12,8 @@
     </v-card-subtitle>
 
     <v-card-actions>
-      <v-btn
-          color="orange-lighten-2"
-          variant="text"
-      >
-        Explore
+
+      <v-btn onclick="" class="btn btn-primary" aria-current="page" data-toggle="modal" data-target="#update-modal">Update
       </v-btn>
 
 
@@ -42,11 +38,10 @@
 </template>
 
 <script>
-
 export default {
   name: "ProductCard",
   props: {
-    product: Object,
+    product: [],
   },
   data() {
     return {
