@@ -41,13 +41,23 @@
 export default {
   name: "ProductCard",
   props: {
-    product: [],
+    product: Object,
   },
   data() {
     return {
       show: false,
     }
-  }
+  },
+  methods: {
+    moveTo(id) {
+      this.$router.push({
+        name: 'single-products',
+        params: {
+          id: id,
+        },
+      })
+    },
+  },
 }
 </script>
 

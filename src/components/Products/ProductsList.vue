@@ -1,19 +1,5 @@
 <template>
   <h1 class="center">Products</h1>
-  <ModalCard v-model:show="dialogVisible"/>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <button class="nav-link active" @click="showDialog " aria-current="page" data-toggle="modal" data-target="#create-modal">Create card</button>
-        </div>
-      </div>
-    </div>
-  </nav>
   <v-container>
     <v-row justify="center">
       <v-progress-circular
@@ -38,45 +24,30 @@
 
 <script>
 import Product from "@/components/Products/ProductCard.vue";
-import ModalCard from "@/components/Products/ModalCard.vue";
-import axios from "../../../services/axios";
+import { useProductsStore } from "/router/stores/products";
+import { mapActions, mapState } from 'pinia'
 export default {
   name: "ProductsList",
   components: {
     Product,
-    ModalCard,
+  },
+  data() {
+    return {
+      search: null,
+    }
   },
   computed: {
+    ...mapState(useProductsStore, ['products']),
     productsCount() {
       return this.products.length;
     }
   },
-  data() {
-    return {
-      products: [],
-      dialogVisible:false
-    }
+  methods: {
+    ...mapActions(useProductsStore, ['getProducts']),
   },
   mounted() {
     this.getProducts();
   },
-  methods: {
-    getProducts(params = {}) {
-      axios.get('/products', {
-        params: {
-          limit: 50,
-          ...params
-        }
-      })
-          .then(response => {
-            localStorage.setItem("products",JSON.stringify(response.data.products));
-            this.products = JSON.parse(localStorage.getItem('products')) || [];
-          })
-    },
-    showDialog(){
-      this.dialogVisible = true;
-    }
-  }
 }
 </script>
 

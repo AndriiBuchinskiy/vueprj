@@ -1,32 +1,32 @@
 <template>
-  <div class="dialog" v-if="show" >
-    <div class="dialog__content">
-      <slot></slot>
+  <div class="dialog" v-if="show" @click.stop="hideDialog">
+    <div @click.stop class="dialog__content">
+      <form @submit.prevent>
+        <h4>Create post</h4>
+        <input
+            v-bind:value="product.title"
+            @input="product.title = $event.target.value"
+            class ="input"
+            type="text"
+            placeholder="Title"
+        >
+        <input
+            v-bind:value="product.description"
+            @input="product.description = $event.target.value"
+            class ="input"
+            type="text"
+            placeholder="Description"
+        >
+        <button
+            class="btn"
+            @click="createCard"
+        >Create
+        </button>
+      </form>
+
     </div>
   </div>
 
-  <form @submit.prevent>
-    <h4>Create post</h4>
-    <input
-        v-bind:value="product.title"
-        @input="product.title = $event.target.value"
-        class ="input"
-        type="text"
-        placeholder="Title"
-    >
-    <input
-        v-bind:value="product.description"
-        @input="product.description = $event.target.value"
-        class ="input"
-        type="text"
-        placeholder="Description"
-    >
-    <button
-      class="btn"
-      @click="createCard "
-      >Create
-    </button>
-  </form>
 
 </template>
 
@@ -52,7 +52,7 @@ export default {
     }
   },
   methods: {
-    /*CreateCard() {
+    /*createCard() {
       const newCard = {
         id: this.product.id,
         title: this.product.title,
@@ -78,13 +78,13 @@ export default {
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(1, 1, 1, 0.5);
   position: fixed;
   display: flex;
 }
 .dialog__content {
   margin: auto;
-  background: white;
+  background: greenyellow;
   border-radius: 12px;
   min-height: 50px;
   min-width: 300px;
