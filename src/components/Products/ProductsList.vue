@@ -24,7 +24,7 @@
 
 <script>
 import Product from "@/components/Products/ProductCard.vue";
-import { useProductsStore } from "/router/stores/products";
+import { useProductsStore } from "@/router/stores/products";
 import { mapActions, mapState } from 'pinia'
 export default {
   name: "ProductsList",

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import {useAuthStore} from "/router/stores/auth.js";
+import {useAuthStore} from "/src/router/stores/auth.js";
 import {mapState, mapActions} from "pinia";
 export default {
   name: "LoginPage",

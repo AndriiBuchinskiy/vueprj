@@ -2,7 +2,7 @@ export default [
     {
         path: '/products',
         name: 'products',
-        component: () => import('@/components/Products/ProductsList.vue')
+        component: () => import('@/components/Products/ProductsList.vue'),
     },
     {
         path: '/products/:id',

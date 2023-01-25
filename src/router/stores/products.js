@@ -20,7 +20,7 @@ export const useProductsStore = defineStore('products', {
             })
                 .then(response => {
                     console.log(response.data)
-                    this.productsState = response.data;
+                    this.productsState = response.data.products;
                 })
         },
 

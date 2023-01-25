@@ -6,7 +6,7 @@
 
 <script>
 import { mapActions, mapState } from 'pinia'
-import { useProductsStore } from "/router/stores/products";
+import { useProductsStore } from "/src/router/stores/products";
 export default {
   name: "SingleProduct",
   data() {

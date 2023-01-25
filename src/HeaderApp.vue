@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import {useAuthStore} from "/router/stores/auth";
+import {useAuthStore} from "@/router/stores/auth";
 import {mapState, mapActions} from "pinia";
 export default {
   name: 'HeaderApp',
@@ -54,7 +54,7 @@ export default {
         },
         {
           route: '/login',
-          name: 'LoginPage',
+          label: 'Login',
         },
       ],
     }

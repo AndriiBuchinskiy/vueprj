@@ -38,6 +38,7 @@
 </template>
 
 <script>
+
 export default {
   name: "ProductCard",
   props: {
@@ -48,16 +49,19 @@ export default {
       show: false,
     }
   },
-  methods: {
-    moveTo(id) {
-      this.$router.push({
-        name: 'single-products',
-        params: {
-          id: id,
-        },
-      })
-    },
-  },
+  /* methods: {
+
+     moveTo(id) {
+       this.$router.push({
+         name: 'single-products',
+         params: {
+           id: id,
+         },
+       })
+     },
+   },
+
+    */
 }
 </script>
 

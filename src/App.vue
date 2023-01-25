@@ -7,16 +7,14 @@
   </v-app>
 </template>
 <script>
-//import Products from "@/components/Products/ProductsList.vue";
+
 import HeaderApp from "./HeaderApp.vue";
-//import ModalCard from "@/components/Products/ModalCard.vue";
+
 
 export default {
   name: 'App',
   components: {
-   // Products,
     HeaderApp,
-    //ModalCard,
   }
 }
 </script>
