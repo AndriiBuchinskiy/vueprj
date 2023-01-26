@@ -22,8 +22,8 @@ export const useAuthStore = defineStore('auth', {
             // }).then((respons) => {
             //     console.log(respons);
             // })
-
-            this.user = this.usersState.find(user => user.id === 5);
+            console.log(this.usersState);
+            this.user = this.usersState.users.find(user => user.id === 5);
         },
         logout() {
             this.user = {};

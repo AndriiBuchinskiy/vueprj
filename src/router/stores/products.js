@@ -14,7 +14,7 @@ export const useProductsStore = defineStore('products', {
         getProducts(params = {}) {
             axiosInstance.get('/products', {
                 params: {
-                    limit: 4,
+                    limit: 10,
                     ...params
                 }
             })
@@ -35,6 +35,9 @@ export const useProductsStore = defineStore('products', {
                     this.productState = response.data;
                 })
         },
+        saveProducts(product) {
+            this.productsState.push(product);
+        }
 
     },
 })

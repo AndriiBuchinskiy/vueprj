@@ -1,93 +1,78 @@
-<template>
-  <div class="dialog" v-if="show" @click.stop="hideDialog">
-    <div @click.stop class="dialog__content">
-      <form @submit.prevent>
-        <h4>Create post</h4>
-        <input
-            v-bind:value="product.title"
-            @input="product.title = $event.target.value"
-            class ="input"
-            type="text"
-            placeholder="Title"
-        >
-        <input
-            v-bind:value="product.description"
-            @input="product.description = $event.target.value"
-            class ="input"
-            type="text"
-            placeholder="Description"
-        >
-        <button
-            class="btn"
-            @click="createCard"
-        >Create
-        </button>
-      </form>
-
-    </div>
-  </div>
-
-
+<template >
+      <v-row justify="center">
+        <v-dialog v-model="dialog" persistent max-width="600px">
+          <v-card>
+            <v-card-title>
+              <span class="headline">User Profile</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field label="Legal first name*" required></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field label="Legal middle name" hint="example of helper text only on focus"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                        label="Legal last name*"
+                        hint="example of persistent helper text"
+                        persistent-hint
+                        required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field label="Email*" required></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field label="Password*" type="password" required></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-select
+                        :items="['0-17', '18-29', '30-54', '54+']"
+                        label="Age*"
+                        required
+                    ></v-select>
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-autocomplete
+                        :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
+                        label="Interests"
+                        multiple
+                    ></v-autocomplete>
+                  </v-col>
+                </v-row>
+              </v-container>
+              <small>*indicates required field</small>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+              <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
 </template>
 
 <script>
-import Product from "@/components/Products/ProductCard.vue";
-
 export default {
-  name: "ModalCard",
+  name: 'ModalCard',
   props: {
-    Product,
-    show: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data() {
-    return {
-      product:{
-        id:'',
-       title:'',
-       description:''
-      }
+    title: {
+      type: String,
+      required: false
     }
   },
   methods: {
-    /*createCard() {
-      const newCard = {
-        id: this.product.id,
-        title: this.product.title,
-        description: this.product.description,
-      }
-      this.product.push(newCard);
-      localStorage.setItem("products", JSON.stringify(this.product));
+    close() {
+      this.$emit('close')
     }
-
-     */
-  },
-
-  UpdateCard() {
-
   }
-}
+};
 </script>
 
-
 <style scoped>
-.dialog {
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background: rgba(1, 1, 1, 0.5);
-  position: fixed;
-  display: flex;
-}
-.dialog__content {
-  margin: auto;
-  background: greenyellow;
-  border-radius: 12px;
-  min-height: 50px;
-  min-width: 300px;
-  padding: 20px;
-}
+
 </style>

@@ -6,9 +6,11 @@ import ShopRoutes from "/src/router/routes/shop.js"
 import HelloWorld from "@/components/HelloWorld.vue"
 
 import loginPage from "@/components/login/LoginPage.vue";
-import ModalCard from "@/components/Products/ModalCard.vue";
 import pageNotFound from "@/PageNotFound.vue";
 import {useAuthStore} from "/src/router/stores/auth.js";
+//import CreateProduct from "@/components/Products/CreateProduct.vue";
+import CheckoutProduct from "@/components/Products/CheckoutProduct.vue";
+import modalCard from "@/components/Products/ModalCard.vue";
 const routes = [
     {
         path: '/',
@@ -20,7 +22,7 @@ const routes = [
         path: '/404',
         name: '404',
         // регистрируем необходимые страницы
-        component: HelloWorld,
+        component: pageNotFound,
     },
     {
         path: '/:pathMatch(.*)*',
@@ -29,14 +31,19 @@ const routes = [
     },
     {
         path: '/create',
-        name: 'CreateCard',
-        component: ModalCard,
-        meta: {requiresAuth: true},
+        name: 'Create Card',
+        component: CheckoutProduct,
+        meta: {requiresAuth: false},
     },
     {
       path: '/login',
-      name:  'LoginPage',
+      name:  'Login',
       component: loginPage,
+    },
+    {
+      path: '/modalUpdate',
+      name: 'modal',
+      component: modalCard,
     },
     // добавляем маршруты в роутер
     ...ShopRoutes,

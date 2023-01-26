@@ -9,19 +9,24 @@
         <button @click="logout" type="button" class="btn btn-success">Logout</button>
       </div>
       <template v-slot:extension>
-        <v-tabs
-            v-model="tab"
-            align-tabs="center"
-            grow
-        >
-          <v-tab
-              v-for="link in links"
-              :key="link"
-              :value="link"
-          >
-            <router-link to="" @click="moveTo(link.name)">{{ link.label }}</router-link>
-          </v-tab>
-        </v-tabs>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <router-link class="nav-link" to="/home"  >Home </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/login">Login </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/Products">Products</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/create">Create Products</router-link>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </template>
     </v-toolbar>
   </v-card>
@@ -43,18 +48,22 @@ export default {
         {
           route: '/products',
           label: 'Products',
+
         },
         {
           route: '/some',
           label: 'Some Page',
+
         },
         {
           route: '/create',
-          label: 'Create Card'
+          label: 'Create Product',
+
         },
         {
           route: '/login',
           label: 'Login',
+
         },
       ],
     }

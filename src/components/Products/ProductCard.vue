@@ -13,16 +13,14 @@
 
     <v-card-actions>
 
-      <v-btn onclick="" class="btn btn-primary" aria-current="page" data-toggle="modal" data-target="#update-modal">Update
-      </v-btn>
-
-
+      <slot name="update-button" :item="product.id"></slot>
       <v-spacer></v-spacer>
 
       <v-btn
           :icon="show ='mdi-chevron-up' "
           @click="show "
-      >More</v-btn>
+             >More</v-btn>
+      <slot name="delete-button" :item="product.id"></slot>
     </v-card-actions>
 
     <v-expand-transition>
@@ -49,8 +47,7 @@ export default {
       show: false,
     }
   },
-  /* methods: {
-
+  methods: {
      moveTo(id) {
        this.$router.push({
          name: 'single-products',
@@ -61,7 +58,7 @@ export default {
      },
    },
 
-    */
+
 }
 </script>
 
