@@ -11,30 +11,18 @@ export const useProductsStore = defineStore('products', {
         product: (state) => state.productState,
     },
     actions: {
-        getProducts(params = {}) {
-            axiosInstance.get('/products', {
+        getProducts(params = {},query = 'products') {
+            axiosInstance.get(query, {
                 params: {
                     limit: 10,
                     ...params
                 }
             })
                 .then(response => {
-                    console.log(response.data)
                     this.productsState = response.data.products;
                 })
         },
 
-        getProduct(id, params = {}) {
-            axiosInstance.get(`/products/${id}`, {
-                params: {
-                    ...params
-                }
-            })
-                .then(response => {
-                    console.log(response.data)
-                    this.productState = response.data;
-                })
-        },
         saveProducts(product) {
             this.productsState.push(product);
         }

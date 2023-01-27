@@ -10,6 +10,7 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import {vfmPlugin} from "vue-final-modal";
 
 const vuetify = createVuetify({
     components,
@@ -23,4 +24,9 @@ app
     .use(vuetify)
     .use(router)
     .use(pinia)
+    .use(vfmPlugin({
+        key: '$vfm',
+        componentName: 'VueFinalModal',
+        dynamicContainerName: 'ModalsContainer'
+    }))
     .mount('#app');

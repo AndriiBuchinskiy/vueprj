@@ -1,6 +1,13 @@
 <template>
+  <div>
   <h1 class="center">Products</h1>
-  <v-container>
+    <v-select
+        v-model="category"
+        label="Select"
+        :items="categories"
+    ></v-select>
+
+    <v-container>
     <v-row justify="center">
       <v-progress-circular
           v-if="products.length === 0"
@@ -21,45 +28,55 @@
             >
               Delete
             </v-btn>
-          </template>
-          <template v-slot:update-button="slotProps">
-            <v-btn
-                color="black"
-                variant="text"
-                @click="updateItem(slotProps.item)"
-            >
-              Update
-            </v-btn>
+
           </template>
         </product>
       </v-col>
     </v-row>
   </v-container>
+
   <span>Total: {{ productsCount }}</span>
+  </div>
 </template>
 
 <script>
 import Product from "@/components/Products/ProductCard.vue";
 import { useProductsStore } from "@/router/stores/products";
-import { mapActions, mapState ,mapWritableState} from 'pinia'
+import { mapActions, mapState ,mapWritableState} from 'pinia';
+import {useCategoriesStore} from "@/router/stores/categories";
+
+
 export default {
   name: "ProductsList",
   components: {
     Product,
+
   },
   data() {
     return {
       search: null,
+      category: null,
+      filters: {
+        category: [],
+      }
     }
   },
   computed: {
+    ...mapState(useCategoriesStore, ['categories']),
     ...mapWritableState(useProductsStore, ['productsState']),
     ...mapState(useProductsStore, ['products']),
     productsCount() {
       return this.products.length;
     }
   },
+  watch: {
+    category(newValue) {
+      this.getProducts({}, `/products/category/${newValue}`);
+    },
+  },
+
   methods: {
+    ...mapActions(useCategoriesStore, ['getCategories']),
     ...mapActions(useProductsStore, ['getProducts']),
     deleteItem(id) {
       this.productsState = this.products.filter(product => product.id !== id);
@@ -69,11 +86,15 @@ export default {
 
    },
 
+
   },
   mounted(){
     if(!this.products.length){
       this.getProducts();
     }
+    this.getCategories();
+
+
   },
 }
 </script>

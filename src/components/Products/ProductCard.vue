@@ -13,13 +13,14 @@
 
     <v-card-actions>
 
-      <slot name="update-button" :item="product.id"></slot>
-      <v-spacer></v-spacer>
 
-      <v-btn
-          :icon="show ='mdi-chevron-up' "
-          @click="show "
-             >More</v-btn>
+      <v-spacer></v-spacer>
+      <modals-container></modals-container>
+        <v-btn
+            :icon="show ='mdi-chevron-up' "
+            @click="showModal"
+        >Update</v-btn>
+
       <slot name="delete-button" :item="product.id"></slot>
     </v-card-actions>
 
@@ -30,15 +31,23 @@
         <v-card-text>
           {{ product.description }}
         </v-card-text>
+        <v-card-text>
+          {{ product.price }}$
+        </v-card-text>
       </div>
     </v-expand-transition>
   </v-card>
+
 </template>
 
 <script>
 
+import { ModalsContainer } from 'vue-final-modal'
 export default {
   name: "ProductCard",
+  components:{
+    ModalsContainer,
+  },
   props: {
     product: Object,
   },
@@ -48,15 +57,10 @@ export default {
     }
   },
   methods: {
-     moveTo(id) {
-       this.$router.push({
-         name: 'single-products',
-         params: {
-           id: id,
-         },
-       })
-     },
-   },
+    showModal() {
+      this.show = true;
+    },
+  }
 
 
 }

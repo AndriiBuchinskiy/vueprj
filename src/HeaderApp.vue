@@ -3,10 +3,10 @@
     <v-toolbar color="primary">
       <v-toolbar-title>Navigation Bar</v-toolbar-title>
       <div v-if="user">
-        <span>{{user.email}}</span>
+        <span>{{user.username}}</span>
       </div>
       <div>
-        <button @click="logout" type="button" class="btn btn-success">Logout</button>
+        <router-link to="/home" @click="logout"  type="button" class="btn btn-success">Logout</router-link>
       </div>
       <template v-slot:extension>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">

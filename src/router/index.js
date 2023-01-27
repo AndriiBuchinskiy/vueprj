@@ -13,7 +13,7 @@ import CheckoutProduct from "@/components/Products/CheckoutProduct.vue";
 import modalCard from "@/components/Products/ModalCard.vue";
 const routes = [
     {
-        path: '/',
+        path: '/home',
         name: 'home',
         component: HelloWorld,
     },
@@ -27,13 +27,12 @@ const routes = [
     {
         path: '/:pathMatch(.*)*',
         redirect: '/404',
-        component: pageNotFound,
     },
     {
         path: '/create',
         name: 'Create Card',
         component: CheckoutProduct,
-        meta: {requiresAuth: false},
+        meta: {requiresAuth: true},
     },
     {
       path: '/login',
@@ -66,7 +65,7 @@ router.beforeEach(async (to, from, next) => {
     const store = useAuthStore();
     console.log(store.user)
     if (requiresAuth && !store.user.id) {
-        next('/auth');
+        next('/login');
     } else {
         next();
     }
