@@ -1,5 +1,6 @@
 <template>
   <div>
+
   <h1 class="center">Products</h1>
     <v-select
         v-model="category"
@@ -19,6 +20,7 @@
           :key="product.id"
           cols="4"
       >
+
         <product :product="product">
           <template v-slot:delete-button="slotProps">
             <v-btn
@@ -29,14 +31,20 @@
               Delete
             </v-btn>
 
+
           </template>
         </product>
-      </v-col>
-    </v-row>
-  </v-container>
 
+      </v-col>
+
+    </v-row>
+
+  </v-container>
   <span>Total: {{ productsCount }}</span>
+
   </div>
+
+
 </template>
 
 <script>
@@ -54,6 +62,7 @@ export default {
   },
   data() {
     return {
+      showModal: false,
       search: null,
       category: null,
       filters: {
@@ -81,11 +90,6 @@ export default {
     deleteItem(id) {
       this.productsState = this.products.filter(product => product.id !== id);
     },
-   updateItem()
-   {
-
-   },
-
 
   },
   mounted(){

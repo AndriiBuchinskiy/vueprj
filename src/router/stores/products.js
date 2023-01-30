@@ -22,7 +22,6 @@ export const useProductsStore = defineStore('products', {
                     this.productsState = response.data.products;
                 })
         },
-
         saveProducts(product) {
             this.productsState.push(product);
         }

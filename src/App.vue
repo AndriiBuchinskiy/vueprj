@@ -1,8 +1,12 @@
 <template>
-  <header-app/>
   <v-app>
     <v-main>
-      <router-view></router-view>
+      <HeaderApp/>
+      <router-view v-slot="{Component} ">
+        <keep-alive include="Products,Home,CheckoutForm">
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </v-main>
   </v-app>
 </template>

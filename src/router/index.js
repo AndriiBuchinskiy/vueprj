@@ -7,7 +7,7 @@ import HelloWorld from "@/components/HelloWorld.vue"
 
 import loginPage from "@/components/login/LoginPage.vue";
 import pageNotFound from "@/PageNotFound.vue";
-import {useAuthStore} from "/src/router/stores/auth.js";
+//import {useAuthStore} from "/src/router/stores/auth.js";
 //import CreateProduct from "@/components/Products/CreateProduct.vue";
 import CheckoutProduct from "@/components/Products/CheckoutProduct.vue";
 import modalCard from "@/components/Products/ModalCard.vue";
@@ -54,7 +54,7 @@ const router = createRouter({
     linkActiveClass: "active",
     linkExactActiveClass: "exact-active",
     // подключаем истории переходов
-    history: createWebHistory(),
+    history: createWebHistory(process.env.BASE_URL),
     // подключаем роуты
     routes
 })
@@ -62,9 +62,9 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-    const store = useAuthStore();
-    console.log(store.user)
-    if (requiresAuth && !store.user.id) {
+    //const store = useAuthStore();
+    //console.log(store.user)
+    if (requiresAuth && !localStorage.getItem('user')) {
         next('/login');
     } else {
         next();

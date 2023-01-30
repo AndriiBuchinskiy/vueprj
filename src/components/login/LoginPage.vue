@@ -26,22 +26,21 @@ import useValidate from '@vuelidate/core';
 import {useAuthStore} from "/src/router/stores/auth.js";
 import {mapState, mapActions} from "pinia";
 import { required, minLength } from '@vuelidate/validators';
+
 export default {
   name: "LoginPage",
   data() {
     return {
       v$: useValidate(),
-
-        username: "johnd",
-        password: "m38rmF$",
-
-    };
+        username: '',
+        password: '',
+    }
   },
   computed: {
     ...mapState(useAuthStore, ["users"]),
   },
   methods: {
-    ...mapActions(useAuthStore, ["getUsers", "loginUser"]),
+    ...mapActions(useAuthStore, ["getUsers", "loginUser","logout"]),
     sendCredentials() {
       this.v$.$validate();
       if (this.v$.$error) {
@@ -52,15 +51,17 @@ export default {
         'username': this.username,
         'password': this.password,
       };
-      if (this.username.length !== 0 && this.password.length !== 0) {
-        this.loginUser(userData);
+      if (this.username.length === 0 || this.password.length === 0) {
+        alert('Input user date');
       }
-      if (this.users === false) {
+
+      if (!this.users ) {
         alert('You are not a registered user');
         this.$router.push({ name: 'home' });
       }
       else
       {
+        this.loginUser(userData);
         this.$router.push({name: 'products'});
       }
     }

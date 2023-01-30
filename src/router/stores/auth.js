@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import axiosInstance from '/services/axios.js';
+import {users} from "@/assets/users";
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -11,22 +11,21 @@ export const useAuthStore = defineStore('auth', {
     },
     actions: {
         getUsers() {
-            axiosInstance.get('/users')
-                .then((respopnse) => {
-                    this.usersState = respopnse.data
-                })
+          this.usersState = users;
+            //console.log(users);
         },
-        loginUser() {
-            // axiosInstance.post('/auth/login', {
-            //     body: data
-            // }).then((respons) => {
-            //     console.log(respons);
-            // })
-            console.log(this.usersState);
-            this.user = this.usersState.users.find(user => user.id === 5);
+        loginUser(data) {
+            this.usersState.forEach(element => {
+                if (data.username === element.username && data.password === element.password) {
+                    this.user = element
+
+                    localStorage.setItem('user', JSON.stringify(element))
+                }
+            });
         },
         logout() {
             this.user = {};
+            localStorage.removeItem('user')
         }
     }
 })

@@ -3,7 +3,7 @@
     <v-toolbar color="primary">
       <v-toolbar-title>Navigation Bar</v-toolbar-title>
       <div v-if="user">
-        <span>{{user.username}}</span>
+        <span>{{username}}</span>
       </div>
       <div>
         <router-link to="/home" @click="logout"  type="button" class="btn btn-success">Logout</router-link>

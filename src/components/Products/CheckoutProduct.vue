@@ -12,11 +12,16 @@
       </div>
       <div class="address__field">
         <label for="category">Category </label>
-        <input type="text" id="category" v-model="product.category" required />
+        <v-select
+            id="category"
+            v-model="product.category"
+            label="Select"
+            :items="categories"
+        ></v-select>
       </div>
       <div class="address__field">
         <label for="price">Price </label>
-        <input type="text" id="price" v-model="product.price" required />
+        <input type="number" id="price" v-model="product.price" required />
       </div>
         <button type="submit">Submit</button>
     </form>
@@ -30,6 +35,7 @@
 
 import {useProductsStore} from "@/router/stores/products";
 import { mapActions,mapState} from 'pinia'
+import {useCategoriesStore} from "@/router/stores/categories";
 
 export default {
   name: "CheckoutForm",
@@ -45,12 +51,15 @@ export default {
   },
   computed: {
     ...mapState(useProductsStore, ['products']),
+    ...mapState(useCategoriesStore, ['categories']),
   },
   methods: {
+    ...mapActions(useCategoriesStore, ['getCategories']),
     ...mapActions(useProductsStore, ['saveProducts']),
     handleSubmit() {
       this.saveProducts(this.product)
       console.log(this.products)
+
     },
   },
 }
