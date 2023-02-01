@@ -1,6 +1,6 @@
 <template>
   <div>
-
+  
   <h1 class="center">Products</h1>
     <v-select
         v-model="category"
@@ -41,6 +41,9 @@
 
   </v-container>
   <span>Total: {{ productsCount }}</span>
+
+
+
 
   </div>
 
@@ -97,6 +100,7 @@ export default {
       this.getProducts();
     }
     this.getCategories();
+
 
 
   },

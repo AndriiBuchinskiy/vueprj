@@ -30,75 +30,76 @@
           {{ product.price }}$
         </v-card-text>
   </v-card>
-
   <vue-final-modal v-model="showModal" classes="modal-container" content-class="modal-content">
 
     <span class="modal__title">Update card</span>
     <div class="modal__content">
       <form @submit.prevent="handleSubmit" class="checkout-form">
         <div class="address__field">
-      <label for="title">Title </label>
-      <input type="text" id="title" v-model="product.title" required />
+          <label for="title">Title </label>
+          <input type="text" id="title" v-model="product.title" required />
         </div>
         <div class="address__field">
-      <label for="description">Description </label>
-      <input type="text" id="description" v-model="product.description" required />
+          <label for="description">Description </label>
+          <input type="text" id="description" v-model="product.description" required />
         </div>
 
 
-       <div class="address__field">
+        <div class="address__field">
           <label for="category">Category </label>
-         <multiselect v-model="value" :options="category"  placeholder="Pick a value"></multiselect>
+          <v-select
+              id="category"
+              v-model="product.category"
+              label="Select"
+              :items="categories"
+          ></v-select>
         </div>
-
         <div class="address__field">
           <label for="price">Price </label>
           <input type="number" id="price" v-model="product.price" required />
         </div>
-     </form>
+      </form>
     </div>
     <div class="modal__action">
-      <v-btn @click="showModal = false">confirm</v-btn>
+      <v-btn type="submit" @click="showModal = false">confirm</v-btn>
       <v-btn @click="showModal = false">cancel</v-btn>
     </div>
   </vue-final-modal>
+
 </template>
 
 <script>
 
-import Multiselect from '@vueform/multiselect';
 import {mapActions, mapState} from "pinia";
 import {useProductsStore} from "@/router/stores/products";
 import {useCategoriesStore} from "@/router/stores/categories";
-import {id} from "vuetify/locale";
+
 
 export default {
   name: "ProductCard",
-  components: Multiselect,
   props: {
     product: Object,
   },
   data() {
     return {
-      value:'',
       showModal: false,
-        category: [],
+      category: [],
+
     }
   },
   computed: {
-    id() {
-      return id
-    },
     ...mapState(useProductsStore, ['products']),
     ...mapState(useCategoriesStore, ['categories']),
   },
   methods: {
     ...mapActions(useProductsStore, ['saveProducts']),
     ...mapActions(useCategoriesStore, ['getCategories']),
+
     handleSubmit() {
-      this.saveProducts(this.product)
+      this.$emit('handleSubmit',this.product);
+      //this.saveProducts(this.product)
     }
-  }
+  },
 }
 </script>
 
